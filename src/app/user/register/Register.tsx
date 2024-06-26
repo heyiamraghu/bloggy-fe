@@ -18,7 +18,7 @@ export default function Register() {
     const submitData = async () => {
         let response = await fetch('https://bloggy.iamraghu.com/register',{
             method: "POST",
-            mode: "cors",
+            mode: "same-origin",
             body: JSON.stringify({
                 first_name: firstName,
                 last_name: lastName,
