@@ -6,7 +6,7 @@ export const blogSchema = z.object({
     title: z.string(),
     subtitle: z.string(),
     content: z.string(),
-    publishDate: z.string(),
+    publishDate: z.number().array(),
     author: z.any(),
 })
 

@@ -6,7 +6,7 @@ type Props = {
     title: string,
     subtitle: string,
     content: string,
-    publishDate: string,
+    publishDate: number[],
     author: "Raghu",
   }
 }
