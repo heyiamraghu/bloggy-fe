@@ -22,7 +22,7 @@ interface Blog {
   author: "Raghu",
 }
 async function getBlogs(): Promise<Blog[]> {
-  const result = await fetch('http://localhost:8080/api/v1/blogs',{
+  const result = await fetch('https://bloggy.iamraghu.com/api/v1/blogs',{
     next: {
       revalidate: 0
     }
