@@ -16,6 +16,7 @@ export default function Register() {
 
 
     const submitData = async () => {
+
         let response = await fetch('https://bloggy.iamraghu.com/register',{
             method: "POST",
             mode: "no-cors",
