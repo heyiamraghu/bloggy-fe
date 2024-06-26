@@ -16,7 +16,7 @@ export default function NewBlogForm() {
     }
 
     const submitData = async () => {
-        let response = await fetch('http://localhost:8080/api/v1/blogs',{
+        let response = await fetch('https://bloggy.iamraghu.com/api/v1/blogs',{
             method: "POST",
             mode: "cors",
             body:JSON.stringify({

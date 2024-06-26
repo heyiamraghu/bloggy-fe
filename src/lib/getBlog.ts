@@ -5,7 +5,7 @@ const fetchBlog = createZodFetcher()
 export const getBlog = async (id: number) => {
     return await fetchBlog(
         blogSchema,
-        `http://localhost:8080/api/v1/blogs/${id}`,
+        `https://bloggy.iamraghu.com/api/v1/blogs/${id}`,
         {cache: 'no-store'}
     );
 }
