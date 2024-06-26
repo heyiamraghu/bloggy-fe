@@ -17,24 +17,21 @@ export default function Register() {
 
     const submitData = async () => {
 
-        let response = await fetch('https://bloggy.iamraghu.com/register',{
+        let response = await fetch('http://localhost:8080/register',{
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
             body: JSON.stringify({
                 first_name: firstName,
                 last_name: lastName,
                 username: username,
                 password: password,
+                role: "USER"
             }),
             headers:{
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
             }
         })
-
         response = await response.json()
-
-        alert(JSON.stringify(response))
     }
 
 
