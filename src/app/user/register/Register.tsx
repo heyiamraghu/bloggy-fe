@@ -42,7 +42,7 @@ export default function Register() {
                 <div className="flex flex-col justify-between gap-8">
                     <Label htmlFor="firstname">Firstname</Label>
                     <Input id="firstname" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                    <Label htmlFor="lastname">Subtitle</Label>
+                    <Label htmlFor="lastname">Lastname</Label>
                     <Input id="lastname" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     <Label htmlFor="username">Username</Label>
                     <Input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
