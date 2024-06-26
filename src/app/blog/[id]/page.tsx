@@ -13,8 +13,6 @@ type Props = {
 
 export default async function BlogPage({ params }: Props) {
 
-  const {id, title, subtitle, content, publishDate, author} = params;
-
   const blog = await getBlog(params.id);
 
     return (

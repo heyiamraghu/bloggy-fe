@@ -1,6 +1,5 @@
 'use client'
 
-import WriteForm from "./WriteForm";
 import NewBlogForm from "@/app/blog/create/NewBlog";
 
 export default function Write() {

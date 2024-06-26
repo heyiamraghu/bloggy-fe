@@ -1,4 +1,3 @@
-import LoginForm from "@/app/user/login/Login";
 import RegisterForm from "@/app/user/register/Register";
 
 export default function LoginPage() {

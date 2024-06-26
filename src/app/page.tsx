@@ -1,13 +1,12 @@
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
@@ -47,9 +46,6 @@ export default async function Home() {
                   <CardDescription>{blog.subtitle}</CardDescription>
                 </div>
               </CardHeader>
-              {/* <CardContent>
-                  <p>{blog.content}</p>
-                </CardContent> */}
               <CardFooter className="flex justify-between">
                 <Button>Read More</Button>
                 <Badge variant="secondary">Raghu</Badge>

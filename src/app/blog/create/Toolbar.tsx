@@ -6,9 +6,7 @@ import {
     Strikethrough,
     Italic,
     List,
-    ListOrdered,
-    Heading2,
-    UnderlineIcon, Heading3
+    Heading3
 } from "lucide-react";
 
 import { Toggle } from "@/components/ui/toggle"
