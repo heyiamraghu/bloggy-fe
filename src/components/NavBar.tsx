@@ -13,7 +13,9 @@ export default function Navbar() {
         { title: "Home", path: "/" },
         { title: "Login", path: "/user/login" },
         { title: "Register", path: "/user/register" },
-        { title: "Create Blog", path: "/blog/create" }
+        { title: "Create Blog", path: "/blog/create" },
+        { title: "Logout", path: "/" }
+
     ]
 
     return (

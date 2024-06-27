@@ -4,3 +4,9 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+
+export function userLoggedOut() {
+  if (localStorage.getItem("token") === null) {
+  }
+}

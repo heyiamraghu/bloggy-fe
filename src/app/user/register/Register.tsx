@@ -4,9 +4,12 @@ import React, {useState} from "react";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {Button} from "@/components/ui/button";
+import {useRouter} from "next/navigation";
 
 
 export default function Register() {
+
+    const router = useRouter();
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -17,12 +20,12 @@ export default function Register() {
 
     const submitData = async () => {
 
-        let response = await fetch('http://localhost:8080/register',{
+        let response = await fetch(`http://localhost:8080/register`,{
             method: "POST",
-            mode: "cors",
+            //mode: "cors",
             body: JSON.stringify({
-                first_name: firstName,
-                last_name: lastName,
+                firstName: firstName,
+                lastName: lastName,
                 username: username,
                 password: password,
                 role: "USER"
@@ -31,7 +34,13 @@ export default function Register() {
                 'Content-type': 'application/json',
             }
         })
-        response = await response.json()
+        //response = await response.json()
+        if (response.status == 200 || response.status == 201) {
+            alert("Registered Successfully");
+            router.push("/user/login")
+        } else {
+            alert("User not registered. There is a chance that your username was already taken. Try with a new username")
+        }
     }
 
 
@@ -40,13 +49,13 @@ export default function Register() {
             <main className="p-24">
                 <div className="flex flex-col justify-between gap-8">
                     <Label htmlFor="firstname">Firstname</Label>
-                    <Input id="firstname" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                    <Input required id="firstname" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                     <Label htmlFor="lastname">Lastname</Label>
-                    <Input id="lastname" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                    <Input required id="lastname" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     <Label htmlFor="username">Username</Label>
-                    <Input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <Input required id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
                     <Label htmlFor="password">Password</Label>
-                    <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Input required id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <Button type="submit" onClick={submitData}>Submit</Button>
                 </div>
             </main>

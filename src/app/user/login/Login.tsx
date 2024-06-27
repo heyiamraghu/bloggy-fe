@@ -1,73 +1,57 @@
 'use client'
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-
-} from "@/components/ui/form"
-
-import { Input } from "@/components/ui/input"
-import * as z from "zod";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import React from "react";
+import React, {useState} from "react";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
 import {Button} from "@/components/ui/button";
+import {useRouter} from "next/navigation";
 
-export default function LoginForm() {
 
-    const loginFormSchema = z.object({
-        username: z.string(),
-        password: z.string()
-    })
+export default function Login() {
 
-    const form = useForm<z.infer<typeof loginFormSchema>>({
-        resolver: zodResolver(loginFormSchema),
-        mode: 'onChange',
-        defaultValues: {
-            username: "",
-            password: ""
+    const router = useRouter();
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+
+
+    const submitData = async () => {
+
+        let response = await fetch(`http://localhost:8080/login`,{
+            method: "POST",
+            //mode: "cors",
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+            headers:{
+                'Content-type': 'application/json',
+            }
+        })
+        //response = await response.json()
+        if (response.status == 200 || response.status == 201) {
+            const data = await response.json();
+            localStorage.setItem("token", data.access_token);
+            alert("Logged in successfully!! Token is saved. You can now create new blog posts.");
+            router.push("/blog/create");
+        } else {
+            alert("Login Failed. Check your credentials")
         }
-    });
+    }
+
 
     return (
-        <main className="p-14">
-            <Form {...form}>
-                <form className="flex flex-col justify-between gap-8">
-                    <FormField
-                        control={form.control}
-                        name="username"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Username</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Enter your username"{...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    >
-                    </FormField>
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Enter your password"{...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    >
-                    </FormField>
-                    <Button type="submit">Login</Button>
-                </form>
-            </Form>
-        </main>
+        <>
+            <main className="p-24">
+                <div className="flex flex-col justify-between gap-8">
+                    <Label htmlFor="username">Username</Label>
+                    <Input required id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <Label htmlFor="password">Password</Label>
+                    <Input required id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Button type="submit" onClick={submitData}>Submit</Button>
+                </div>
+            </main>
+        </>
     )
 }

@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/card"
 
 
+
+
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
@@ -36,7 +38,7 @@ export default async function Home() {
   return (
     <main>
       <div className="grid grid-cols-3 gap-8">
-        {blogs.map(blog => (
+        {blogs.reverse().map(blog => (
             <Card key={blog.id} className="flex flex-col justify-between">
               <Link href={`/blog/${blog.id}`}>
               <CardHeader className="flex-row gap-4 items-center">
