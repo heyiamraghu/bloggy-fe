@@ -20,7 +20,7 @@ export default function Register() {
 
     const submitData = async () => {
 
-        let response = await fetch(`http://localhost:8080/register`,{
+        let response = await fetch(`https://bloggy.iamraghu.com/register`,{
             method: "POST",
             //mode: "cors",
             body: JSON.stringify({

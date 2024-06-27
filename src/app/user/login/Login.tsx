@@ -18,7 +18,7 @@ export default function Login() {
 
     const submitData = async () => {
 
-        let response = await fetch(`http://localhost:8080/login`,{
+        let response = await fetch(`https://bloggy.iamraghu.com/login`,{
             method: "POST",
             //mode: "cors",
             body: JSON.stringify({
