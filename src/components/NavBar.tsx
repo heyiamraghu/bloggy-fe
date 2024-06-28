@@ -5,9 +5,25 @@ import Link from "next/link"
 import { Menu } from "lucide-react"
 import {Button} from "@/components/ui/button";
 import { CirclePlus } from 'lucide-react';
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 export default function Navbar() {
+
+    const router = useRouter();
+
     const [state, setState] = React.useState(false)
+
+    function handleLogout() {
+        if (localStorage.getItem("token") === null) {
+            alert("You are already logged out");
+            router.push("/");
+        } else {
+            localStorage.removeItem("token");
+            alert("You are logged out. Session closed");
+            router.push("/");
+        }
+    }
 
     const menus = [
         { title: "Home", path: "/" },
@@ -42,7 +58,7 @@ export default function Navbar() {
                     <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                         {menus.map((item, idx) => (
                             <li key={idx} className="text-gray-600 hover:text-indigo-600">
-                                {item.title == "Create Blog" ? <Button><CirclePlus className="p-1" size={26}/><Link href={item.path}>{item.title}</Link></Button> : <Link href={item.path}>{item.title}</Link>}
+                                {item.title == "Logout" ? <Button onClick={handleLogout}><Link href={item.path}>{item.title}</Link></Button> : <Button><Link href={item.path}>{item.title}</Link></Button>}
                             </li>
                         ))}
                     </ul>
